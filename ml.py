@@ -41,3 +41,31 @@ df = pd.DataFrame({'A': ['high','medium','los'], 'B':[10,20,30]},
                   index=[0,1,2])
 
 df_with_dummies = pd.get_dummies(df, prefix='A', columns=['A'])
+
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+import numpy as np
+
+
+iris = datasets.load_iris()
+iris.data
+X = iris.data[:, [2,3]]
+y = iris.target
+
+scale = StandardScaler()
+
+X_scale=scale.fit_transform(X)
+
+scale2 = MinMaxScaler()
+Min_scale = scale2.fit_transform(X)
+
+
+iris = datasets.load_iris()
+
+iris = pd.DataFrame(data= np.c_[iris['data'], iris['target']],
+ columns= iris['feature_names'] + ['species'])
+
+
+iris.species = np.where(iris.Species ==0.0, 'setosa', np.where(iris.species== 1,'versicolor', 'virginica'))
+
+
