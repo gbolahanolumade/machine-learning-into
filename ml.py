@@ -65,7 +65,36 @@ iris = datasets.load_iris()
 iris = pd.DataFrame(data= np.c_[iris['data'], iris['target']],
  columns= iris['feature_names'] + ['species'])
 
+iris.species = np.where(iris.species == 0.0, 'setosa', np.where(iris.
+species==1.0,'versicolor', 'virginica'))
 
-iris.species = np.where(iris.Species ==0.0, 'setosa', np.where(iris.species== 1,'versicolor', 'virginica'))
+iris.columns = iris.columns.str.replace(' ','')
+iris.describe()
 
 
+iris.hist()
+
+plt.subplots
+plt.show()
+
+iris.boxplot()
+plt.show()
+
+
+iris.groupby(by = "species").mean()
+# plot for mean of each feature for each label class
+iris.groupby(by = "species").mean().plot(kind="bar")
+plt.title('Class vs Measurements')
+plt.ylabel('mean measurement(cm)')
+plt.xticks(rotation=0) # manage the xticks rotation
+plt.grid(True)
+# Use bbox_to_anchor option to place the legend outside plot area to be tidy
+plt.legend(loc="upper left", bbox_to_anchor=(1,1))
+
+
+corr = iris.corr()
+
+import statsmodels.api as sm
+sm.graphics.plot_corr(corr, xnames=list(corr.columns))
+plt.show()
+print (corr)
