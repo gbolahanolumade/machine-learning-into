@@ -97,4 +97,15 @@ corr = iris.corr()
 import statsmodels.api as sm
 sm.graphics.plot_corr(corr, xnames=list(corr.columns))
 plt.show()
+
+
+from pandas.tools.plotting import scatter_matrix
+scatter_matrix(iris, figure=(10,10))
+           
+               
+               
+               
+
+
+
 print (corr)
