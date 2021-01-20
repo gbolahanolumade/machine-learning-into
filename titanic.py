@@ -30,3 +30,4 @@ df.describe(include='all')
 df.Sex.value_counts()
 
 df.Sex.value_counts(normalize='true')
+
